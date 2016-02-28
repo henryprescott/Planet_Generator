@@ -10,15 +10,16 @@ class ViewPortRenderer : public QObject, protected QOpenGLFunctions
 {
 	Q_OBJECT
 public:
-	ViewPortRenderer() : m_t(0), m_program(0) { }
+	ViewPortRenderer();
 	~ViewPortRenderer();
 
-	void setT(qreal t) { m_t = t; }
-	void setViewportSize(const QSize &size) { m_viewportSize = size; }
-	void setWindow(QQuickWindow *window) { m_window = window; }
+	void setT(qreal t);
+	void setViewportSize(const QSize &size);
+	void setWindow(QQuickWindow *window);
 
-	public slots:
+public slots:
 	void paint();
+	void update();
 
 private:
 	QSize m_viewportSize;
@@ -35,7 +36,7 @@ class ViewPort : public QQuickItem
 public:
 	ViewPort();
 
-	qreal t() const { return m_t; }
+	qreal t() const;
 	void setT(qreal t);
 
 signals:
