@@ -3,7 +3,7 @@ import OpenGLUnderQML 1.0
 
 Item {
     id: page
-    width: 320; height: 480
+    width: 1024; height: 512
 
     ViewPort {
         SequentialAnimation on t {

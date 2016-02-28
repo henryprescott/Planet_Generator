@@ -55,11 +55,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="planetGenerator.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="src\Viewport.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="planetGenerator.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

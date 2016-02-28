@@ -179,7 +179,7 @@
     <ClCompile Include="src\ViewPort.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="resources\planetGenerator.qrc">
+    <CustomBuild Include="planetGenerator.qrc">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Rcc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
