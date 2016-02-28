@@ -1,4 +1,4 @@
-// basictypes.h
+// model.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,12 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_MODEL_H
+#define NOISE_MODEL_H
 
-// You may need to modify these constants for your compiler or platform.
-
-namespace noise
-{
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
-}
+#include "cylinder.h"
+#include "line.h"
+#include "plane.h"
+#include "sphere.h"
 
 #endif

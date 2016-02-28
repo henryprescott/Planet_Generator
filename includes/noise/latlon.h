@@ -1,4 +1,4 @@
-// basictypes.h
+// latlon.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,38 +20,30 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_LATLON_H
+#define NOISE_LATLON_H
 
-// You may need to modify these constants for your compiler or platform.
+#include <math.h>
+#include "mathconsts.h"
 
 namespace noise
 {
 
-  /// @defgroup libnoise libnoise
   /// @addtogroup libnoise
   /// @{
 
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
+  /// Converts latitude/longitude coordinates on a unit sphere into 3D
+  /// Cartesian coordinates.
+  ///
+  /// @param lat The latitude, in degrees.
+  /// @param lon The longitude, in degrees.
+  /// @param x On exit, this parameter contains the @a x coordinate.
+  /// @param y On exit, this parameter contains the @a y coordinate.
+  /// @param z On exit, this parameter contains the @a z coordinate.
+  ///
+  /// @pre lat must range from @b -90 to @b +90.
+  /// @pre lon must range from @b -180 to @b +180.
+  void LatLonToXYZ (double lat, double lon, double& x, double& y, double& z);
 
   /// @}
 

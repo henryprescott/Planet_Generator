@@ -2,9 +2,13 @@
 #include <QtGui/QGuiApplication>
 #include <QtQuick/QQuickView>
 #include "ViewPort.h"
+#include "NoiseGenerator.h"
 
 int main(int argc, char *argv[])
 {
+	NoiseGenerator* noiseGen = new NoiseGenerator();
+	noiseGen->init();
+
 	QGuiApplication a(argc, argv);
 
 	qmlRegisterType<ViewPort>("OpenGLUnderQML", 1, 0, "ViewPort");

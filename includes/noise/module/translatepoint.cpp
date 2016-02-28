@@ -1,6 +1,6 @@
-// basictypes.h
+// translatepoint.cpp
 //
-// Copyright (C) 2003, 2004 Jason Bevins
+// Copyright (C) 2004 Jason Bevins
 //
 // This library is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -20,41 +20,22 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "translatepoint.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+TranslatePoint::TranslatePoint ():
+  Module (GetSourceModuleCount ()),
+  m_xTranslation (DEFAULT_TRANSLATE_POINT_X),
+  m_yTranslation (DEFAULT_TRANSLATE_POINT_Y),
+  m_zTranslation (DEFAULT_TRANSLATE_POINT_Z)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double TranslatePoint::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+
+  return m_pSourceModule[0]->GetValue (x + m_xTranslation, y + m_yTranslation,
+    z + m_zTranslation);
+}

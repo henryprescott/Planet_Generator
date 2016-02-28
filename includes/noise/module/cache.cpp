@@ -1,4 +1,4 @@
-// basictypes.h
+// cache.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,26 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "cache.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+Cache::Cache ():
+  Module (GetSourceModuleCount ()),
+  m_isCached (false)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double Cache::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+
+  if (!(m_isCached && x == m_xCache && y == m_yCache && z == m_zCache)) {
+    m_cachedValue = m_pSourceModule[0]->GetValue (x, y, z);
+    m_xCache = x;
+    m_yCache = y;
+    m_zCache = z;
+  }
+  m_isCached = true;
+  return m_cachedValue;
+}

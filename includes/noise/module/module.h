@@ -1,4 +1,4 @@
-// basictypes.h
+// module.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,36 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_MODULE_H
+#define NOISE_MODULE_H
 
-// You may need to modify these constants for your compiler or platform.
-
-namespace noise
-{
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
-}
+#include "add.h"
+#include "abs.h"
+#include "billow.h"
+#include "blend.h"
+#include "cache.h"
+#include "checkerboard.h"
+#include "clamp.h"
+#include "const.h"
+#include "curve.h"
+#include "cylinders.h"
+#include "displace.h"
+#include "exponent.h"
+#include "invert.h"
+#include "max.h"
+#include "min.h"
+#include "multiply.h"
+#include "perlin.h"
+#include "power.h"
+#include "ridgedmulti.h"
+#include "rotatepoint.h"
+#include "scalebias.h"
+#include "scalepoint.h"
+#include "select.h"
+#include "spheres.h"
+#include "terrace.h"
+#include "translatepoint.h"
+#include "turbulence.h"
+#include "voronoi.h"
 
 #endif

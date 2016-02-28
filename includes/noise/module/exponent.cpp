@@ -1,4 +1,4 @@
-// basictypes.h
+// exponent.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,20 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "exponent.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+Exponent::Exponent ():
+  Module (GetSourceModuleCount ()),
+  m_exponent (DEFAULT_EXPONENT)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double Exponent::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+
+  double value = m_pSourceModule[0]->GetValue (x, y, z);
+  return (pow (fabs ((value + 1.0) / 2.0), m_exponent) * 2.0 - 1.0);
+}

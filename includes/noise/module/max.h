@@ -1,4 +1,4 @@
-// basictypes.h
+// max.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,40 +20,56 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_MODULE_MAX_H
+#define NOISE_MODULE_MAX_H
 
-// You may need to modify these constants for your compiler or platform.
+#include "modulebase.h"
 
 namespace noise
 {
 
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
+  namespace module
+  {
 
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
+    /// @addtogroup libnoise
+    /// @{
 
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
+    /// @addtogroup modules
+    /// @{
 
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
+    /// @addtogroup combinermodules
+    /// @{
 
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
+    /// Noise module that outputs the larger of the two output values from two
+    /// source modules.
+    ///
+    /// @image html modulemax.png
+    ///
+    /// This noise module requires two source modules.
+    class Max: public Module
+    {
 
-  /// 32-bit signed integer type.
-  typedef int int32;
+      public:
 
-  /// 16-bit signed integer type.
-  typedef short int16;
+        /// Constructor.
+        Max ();
 
-  /// 8-bit signed integer type.
-  typedef char int8;
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
 
-  /// @}
+        virtual double GetValue (double x, double y, double z) const;
+
+    };
+
+    /// @}
+
+    /// @}
+
+    /// @}
+
+  }
 
 }
 

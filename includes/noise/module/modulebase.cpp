@@ -1,4 +1,4 @@
-// basictypes.h
+// modulebase.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,27 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "modulebase.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+Module::Module (int sourceModuleCount)
 {
+  m_pSourceModule = NULL;
 
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
+  // Create an array of pointers to all source modules required by this
+  // noise module.  Set these pointers to NULL.
+  if (sourceModuleCount > 0) {
+    m_pSourceModule = new const Module*[sourceModuleCount];
+    for (int i = 0; i < sourceModuleCount; i++) {
+      m_pSourceModule[i] = NULL;
+    }
+  } else {
+    m_pSourceModule = NULL;
+  }
 }
 
-#endif
+Module::~Module ()
+{
+  delete[] m_pSourceModule;
+}

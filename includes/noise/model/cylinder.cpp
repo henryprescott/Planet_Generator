@@ -1,4 +1,4 @@
-// basictypes.h
+// cylinder.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,28 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "../mathconsts.h"
+#include "cylinder.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise;
+using namespace noise::model;
 
-namespace noise
+Cylinder::Cylinder (): m_pModule (NULL)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+Cylinder::Cylinder (const module::Module& module):
+  m_pModule (&module)
+{
+}
+
+double Cylinder::GetValue (double angle, double height) const
+{
+  assert (m_pModule != NULL);
+
+  double x, y, z;
+  x = cos (angle * DEG_TO_RAD);
+  y = height;
+  z = sin (angle * DEG_TO_RAD);
+  return m_pModule->GetValue (x, y, z);
+}

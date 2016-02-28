@@ -1,4 +1,4 @@
-// basictypes.h
+// spheres.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,26 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "../misc.h"
+#include "spheres.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+Spheres::Spheres ():
+  Module (GetSourceModuleCount ()),
+  m_frequency (DEFAULT_SPHERES_FREQUENCY)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double Spheres::GetValue (double x, double y, double z) const
+{
+  x *= m_frequency;
+  y *= m_frequency;
+  z *= m_frequency;
+
+  double distFromCenter = sqrt (x * x + y * y + z * z);
+  double distFromSmallerSphere = distFromCenter - floor (distFromCenter);
+  double distFromLargerSphere = 1.0 - distFromSmallerSphere;
+  double nearestDist = GetMin (distFromSmallerSphere, distFromLargerSphere);
+  return 1.0 - (nearestDist * 4.0); // Puts it in the -1.0 to +1.0 range.
+}

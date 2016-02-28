@@ -1,4 +1,4 @@
-// basictypes.h
+// add.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,40 +20,57 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_MODULE_ADD_H
+#define NOISE_MODULE_ADD_H
 
-// You may need to modify these constants for your compiler or platform.
+#include "modulebase.h"
 
 namespace noise
 {
 
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
+  namespace module
+  {
 
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
+    /// @addtogroup libnoise
+    /// @{
+    
+    /// @addtogroup modules
+    /// @{
+    
+    /// @defgroup combinermodules Combiner Modules
+    /// @addtogroup combinermodules
+    /// @{
+    
+    /// Noise module that outputs the sum of the two output values from two
+    /// source modules.
+    ///
+    /// @image html moduleadd.png
+    ///
+    /// This noise module requires two source modules.
+    class Add: public Module
+    {
 
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
+      public:
 
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
+        /// Constructor.
+        Add ();
 
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
+        virtual int GetSourceModuleCount () const
+        {
+          return 2;
+        }
 
-  /// 32-bit signed integer type.
-  typedef int int32;
+        virtual double GetValue (double x, double y, double z) const;
 
-  /// 16-bit signed integer type.
-  typedef short int16;
+    };
 
-  /// 8-bit signed integer type.
-  typedef char int8;
+    /// @}
 
-  /// @}
+    /// @}
+
+    /// @}
+
+  }
 
 }
 

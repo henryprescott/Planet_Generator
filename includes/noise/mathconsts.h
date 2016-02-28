@@ -1,4 +1,4 @@
-// basictypes.h
+// mathconsts.h
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,38 +20,32 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#ifndef NOISE_MATHCONSTS_H
+#define NOISE_MATHCONSTS_H
 
-// You may need to modify these constants for your compiler or platform.
+// For whatever reason, I can't find the basic math consts in the MSVC version
+// of math.h.
 
 namespace noise
 {
 
-  /// @defgroup libnoise libnoise
   /// @addtogroup libnoise
   /// @{
 
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
+  /// Pi.
+  const double PI = 3.1415926535897932385;
 
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
+  /// Square root of 2.
+  const double SQRT_2 = 1.4142135623730950488;
 
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
+  /// Square root of 3.
+  const double SQRT_3 = 1.7320508075688772935;
 
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
+  /// Converts an angle from degrees to radians.
+  const double DEG_TO_RAD = PI / 180.0;
 
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
+  /// Converts an angle from radians to degrees.
+  const double RAD_TO_DEG = 1.0 / DEG_TO_RAD;
 
   /// @}
 

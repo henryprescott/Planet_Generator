@@ -1,4 +1,4 @@
-// basictypes.h
+// max.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,22 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "../misc.h"
+#include "max.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+Max::Max ():
+  Module (GetSourceModuleCount ())
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double Max::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+  assert (m_pSourceModule[1] != NULL);
+
+  double v0 = m_pSourceModule[0]->GetValue (x, y, z);
+  double v1 = m_pSourceModule[1]->GetValue (x, y, z);
+  return GetMax (v0, v1);
+}

@@ -1,4 +1,4 @@
-// basictypes.h
+// scalepoint.cpp
 //
 // Copyright (C) 2003, 2004 Jason Bevins
 //
@@ -20,41 +20,22 @@
 // off every 'zig'.)
 //
 
-#ifndef NOISE_BASICTYPES_H
-#define NOISE_BASICTYPES_H
+#include "scalepoint.h"
 
-// You may need to modify these constants for your compiler or platform.
+using namespace noise::module;
 
-namespace noise
+ScalePoint::ScalePoint ():
+  Module (GetSourceModuleCount ()),
+  m_xScale (DEFAULT_SCALE_POINT_X),
+  m_yScale (DEFAULT_SCALE_POINT_Y),
+  m_zScale (DEFAULT_SCALE_POINT_Z)
 {
-
-  /// @defgroup libnoise libnoise
-  /// @addtogroup libnoise
-  /// @{
-
-  /// Unsigned integer type.
-  typedef unsigned int UInt;
-
-  /// 32-bit unsigned integer type.
-  typedef unsigned int uint32;
-
-  /// 16-bit unsigned integer type.
-  typedef unsigned short uint16;
-
-  /// 8-bit unsigned integer type.
-  typedef unsigned char uint8;
-
-  /// 32-bit signed integer type.
-  typedef int int32;
-
-  /// 16-bit signed integer type.
-  typedef short int16;
-
-  /// 8-bit signed integer type.
-  typedef char int8;
-
-  /// @}
-
 }
 
-#endif
+double ScalePoint::GetValue (double x, double y, double z) const
+{
+  assert (m_pSourceModule[0] != NULL);
+
+  return m_pSourceModule[0]->GetValue (x * m_xScale, y * m_yScale,
+    z * m_zScale);
+}
