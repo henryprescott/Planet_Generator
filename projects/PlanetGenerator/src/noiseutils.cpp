@@ -865,13 +865,13 @@ void NoiseMapBuilderPlane::Build ()
     for (int x = 0; x < m_destWidth; x++) {
       float finalValue;
       if (!m_isSeamlessEnabled) {
-        finalValue = planeModel.GetValue (xCur, zCur);
+        finalValue = planeModel.GetValue (xCur, 0, zCur);
       } else {
         double swValue, seValue, nwValue, neValue;
-        swValue = planeModel.GetValue (xCur          , zCur          );
-        seValue = planeModel.GetValue (xCur + xExtent, zCur          );
-        nwValue = planeModel.GetValue (xCur          , zCur + zExtent);
-        neValue = planeModel.GetValue (xCur + xExtent, zCur + zExtent);
+        swValue = planeModel.GetValue (xCur          , 0, zCur          );
+        seValue = planeModel.GetValue (xCur + xExtent, 0, zCur          );
+        nwValue = planeModel.GetValue (xCur          , 0, zCur + zExtent);
+        neValue = planeModel.GetValue (xCur + xExtent, 0, zCur + zExtent);
         double xBlend = 1.0 - ((xCur - m_lowerXBound) / xExtent);
         double zBlend = 1.0 - ((zCur - m_lowerZBound) / zExtent);
         double z0 = LinearInterp (swValue, seValue, xBlend);
